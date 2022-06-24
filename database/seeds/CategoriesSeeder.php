@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
+use Faker\Generator as Faker;
+use App\Category;
 
 class CategoriesSeeder extends Seeder
 {
@@ -11,6 +14,12 @@ class CategoriesSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $categorieslist = ['Starters', 'First Courses', 'Main Courses', 'Puddings'];
+        foreach ($categorieslist as $category) {
+            $newCategory = new Category();
+            $newCategory->name = $category;
+            $newCategory->slug = Str::of($newCategory->name)->slug('-');
+            $newCategory->save;
+        }
     }
 }
