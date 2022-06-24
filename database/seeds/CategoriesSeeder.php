@@ -19,7 +19,7 @@ class CategoriesSeeder extends Seeder
             $newCategory = new Category();
             $newCategory->name = $category;
             $newCategory->slug = Str::of($newCategory->name)->slug('-');
-            $newCategory->save;
+            $newCategory->save();
         }
     }
 }
