@@ -43,9 +43,10 @@ class PostController extends Controller
         $data = $request->all();
         $newPost = new Post();
         $newPost->title = $data['title'];
-        $slug = Str::of($data['title'])->slug("-");
         $newPost->content = $data['content'];
         $newPost->published = isset($data['published']);
+        $newPost->category_id = isset($data['category_id']);
+        $slug = Str::of($data['title'])->slug("-");
         $count = 1;
         while (Post::where('slug', $slug)->first()) {
             $slug = Str::of($data['title'])->slug("-") . "{$count}";
