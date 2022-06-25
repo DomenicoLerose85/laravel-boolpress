@@ -12,6 +12,13 @@
     <textarea name="content" id="content" class="form-control" cols="30" rows="10">{{old('content')}}</textarea>
   </div>
   <div class="mb-3 form-check">
+    <label for="category" class="form-label">Categoriey</label>
+    <select name="category" id="category">
+      @foreach ($categories as $category)
+      <option value="{{$category->id}}">{{$category->name}}</option>
+          
+      @endforeach
+    </select>
     <input type="checkbox" class="form-check-input" id="published" name="published">
     <label class="form-check-label" {{old('published') ? 'checked' : ''}} for="published">Published</label>
   </div>
