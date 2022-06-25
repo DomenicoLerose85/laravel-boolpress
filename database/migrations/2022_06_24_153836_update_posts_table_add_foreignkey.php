@@ -14,7 +14,14 @@ class UpdatePostsTableAddForeignkey extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            //
+
+            // $table->unsignedBigInteger('user_id');
+            // $table->foreign('user_id')
+            //       ->references('id')
+            //       ->on('user_id');
+
+            $table->foreignId('category_id')->nullable()->constrained()->OnDelete('set null');
+            $table->string('image')->nullable();
         });
     }
 
@@ -26,7 +33,9 @@ class UpdatePostsTableAddForeignkey extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            //
+            $table->dropForeign(['categoey_id']);
+            $table->dropColumn('categoey_id');
+            $table->dropColumn('Image');
         });
     }
 }
