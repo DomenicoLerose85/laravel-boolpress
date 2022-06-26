@@ -1,5 +1,30 @@
 @extends('layouts.admin');
 
+
 @section('content')
+<form action="{{route(admin.posts.update, $post->id)}}" method="POST">
+        @csrf
+        @method('PUT')
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input type="text" class="form-control" id="title" name="title" value="{{old('title', $post->title)}}" placeholder="Insert title">
+  </div>
+  <div class="mb-3">
+    <label for="content" class="form-label">Content</label>
+    <textarea name="content" id="content" class="form-control" cols="30" rows="10">{{old('content', $post->content)}}</textarea>
+  </div>
+  <div class="mb-3 form-check">
+    <label for="category" class="form-label">Categoriey</label>
+    <select name="category" id="category">
+      @foreach ($categories as $category)
+      <option value="{{$category->id}}" {{$category->id == old('category_id', $post->category_id) ? 'selected' : ''}}>{{$category->name}}</option>
+          
+      @endforeach
+    </select>
+    <input type="checkbox" class="form-check-input" id="published" name="published">
+    <label class="form-check-label" {{old('published', $post->published) ? 'checked' : ''}} for="published">Published</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
     
 @endsection

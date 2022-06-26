@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Post;
-use App\Catyegory;
+use App\Category;
 
 class PostController extends Controller
 {
@@ -78,7 +78,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.posts.index');
+        $post = Post::findOrFail($id);
+        $categories = Category::all();
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -88,9 +90,17 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $data = $request->all();
+
+        if ($post->title != $data['title']) {
+            $post->title = $data['title'];
+            $slug = Str::of($post->title)->slug("-");
+            if ($slug != $post->slug) {
+                $post->slug = $this->getSlug($post->title);
+            }
+        }
     }
 
     /**
@@ -101,6 +111,24 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post->delete();
+        return redirect()->route('admin.post.index')->with("message", "Post with id:{$post->id} successfully deleted !");
     }
+
+    @param string
+    @return string
+
+    private fiunction getSlug($title);{
+        $slug = Str::of($data['title'])->slug("-");
+        $count = 1;
+
+        while(Post::where("slug, $slug")->first()){
+            $slug = Str::of($data['title'])->slug("-") . "{$count}";
+            $count++;
+        }
+
+        return $slug;
+    }
+
+
 }

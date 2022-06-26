@@ -17,7 +17,7 @@
       @foreach ($categories as $category)
       <option value="{{$category->id}}">{{$category->name}}</option>
           
-      @endforeach
+      @endforeach 
     </select>
     <input type="checkbox" class="form-check-input" id="published" name="published">
     <label class="form-check-label" {{old('published') ? 'checked' : ''}} for="published">Published</label>
