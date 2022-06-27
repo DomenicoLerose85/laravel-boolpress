@@ -19,6 +19,9 @@
           
       @endforeach 
     </select>
+    @error('category_id')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     <input type="checkbox" class="form-check-input" id="published" name="published">
     <label class="form-check-label" {{old('published') ? 'checked' : ''}} for="published">Published</label>
   </div>

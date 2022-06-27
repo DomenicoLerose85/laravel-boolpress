@@ -15,12 +15,15 @@
   </div>
   <div class="mb-3 form-check">
     <label for="category" class="form-label">Categoriey</label>
-    <select name="category" id="category">
+    <select name="category" id="category" class="form-control @error('category_id') is-invalid"@enderror>
+      <option value="">Select Category</option>
       @foreach ($categories as $category)
-      <option value="{{$category->id}}" {{$category->id == old('category_id', $post->category_id) ? 'selected' : ''}}>{{$category->name}}</option>
-          
+      <option value="{{$category->id}}" {{$category->id == old('category_id', $post->category_id) ? 'selected' : ''}}>{{$category->name}}</option>   
       @endforeach
     </select>
+    @error('category_id')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     <input type="checkbox" class="form-check-input" id="published" name="published">
     <label class="form-check-label" {{old('published', $post->published) ? 'checked' : ''}} for="published">Published</label>
   </div>
