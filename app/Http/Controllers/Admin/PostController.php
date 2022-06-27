@@ -109,26 +109,26 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
         $post->delete();
         return redirect()->route('admin.post.index')->with("message", "Post with id:{$post->id} successfully deleted !");
     }
 
-    @param string
-    @return string
+    // @param string
+    // @return string 
 
-    private fiunction getSlug($title);{
-        $slug = Str::of($data['title'])->slug("-");
+    private function getSlug($title)
+
+    {
+        $slug = Str::of($title)->slug("-");
         $count = 1;
 
-        while(Post::where("slug, $slug")->first()){
-            $slug = Str::of($data['title'])->slug("-") . "{$count}";
+        while (Post::where("slug", $slug)->first()) {
+            $slug = Str::of($title)->slug("-") . "{$count}";
             $count++;
         }
 
         return $slug;
     }
-
-
 }
