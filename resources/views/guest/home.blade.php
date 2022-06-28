@@ -7,7 +7,7 @@
         <title>Boolpress</title>
 
         <!-- Fonts -->
-        <link href={{ assets('css/front.css') }} rel="stylesheet">
+        <link href={{ asset('css/front.css') }} rel="stylesheet">
 
         <!-- Styles -->
         <style>

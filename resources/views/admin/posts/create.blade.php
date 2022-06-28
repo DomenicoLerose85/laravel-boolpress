@@ -12,8 +12,9 @@
     <textarea name="content" id="content" class="form-control" cols="30" rows="10">{{old('content')}}</textarea>
   </div>
   <div class="mb-3 form-check">
-    <label for="category" class="form-label">Categoriey</label>
-    <select name="category" id="category">
+    <label for="category" class="form-label">Category</label>
+    <select name="category" id="category" class="form-control">
+      <option value="">Select Category</option>
       @foreach ($categories as $category)
       <option value="{{$category->id}}">{{$category->name}}</option>
           
