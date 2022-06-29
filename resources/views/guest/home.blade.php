@@ -10,7 +10,7 @@
         <link href={{ asset('css/front.css') }} rel="stylesheet">
 
         <!-- Styles -->
-        <style>
+        {{-- <style>
             html, body {
                 background-color: #fff;
                 color: #636b6f;
@@ -61,10 +61,14 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
-        </style>
+        </style> --}}
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+
+            <div id="root"></div>
+
+            
+            {{-- <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -74,7 +78,7 @@
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
-                        @endif
+                            @endif
                     @endauth
                 </div>
             @endif
@@ -83,6 +87,7 @@
 
             </div>
         </div>
-        <script src="{{asset('js/front.js')}}" charset="utf-8"></script>
+        <script src="{{asset('js/front.js')}}" charset="utf-8"></script> --}}
+        <script src="{{asset("js/front.js")}}"></script>
     </body>
 </html>
