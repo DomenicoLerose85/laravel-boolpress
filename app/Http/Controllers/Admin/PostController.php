@@ -17,7 +17,7 @@ class PostController extends Controller
         "published" => "sometimes|accepted",
         "category_id" => "nullable|exists:categories,id",
         "image" => "nullable|image|mimes:jpg,bmp,png|max:2048",
-        "tags" => "nullable|exists:tagss,id"
+        "tags" => "nullable|exists:tags,id"
     ];
     /**
      * Display a listing of the resource.
@@ -57,15 +57,11 @@ class PostController extends Controller
         $newPost->content = $data['content'];
         $newPost->published = isset($data['published']);
         $newPost->category_id = isset($data['category_id']);
-        $slug = Str::of($data['title'])->slug("-");
-        $count = 1;
-        while (Post::where('slug', $slug)->first()) {
-            $slug = Str::of($data['title'])->slug("-") . "{$count}";
-            $count++;
-        }
-        $newPost->slug = $slug;
+        $newPost->slug = $this->getSlug($newPost->title);
         $newPost->save();
-
+        if (isset($data['tags'])) {
+            $newPost->tags()->sync($data['tags']);
+        }
         return redirect()->route('admin.post.show', $newPost->id);
     }
 
