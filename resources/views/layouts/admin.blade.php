@@ -33,6 +33,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        @auth
+                            <li class="nav-item">
+                                <a class="nav-link {{Route::currentRouteName() == 'admin.home' ? 'active' : ''}}" href="{{route('admin.home')}}">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{Route::currentRouteName() == 'admin.posts.index' ? 'active' : ''}}" href="{{route('admin.posts.index')}}">Posts</a>
+                            </li>
+                        @endauth
 
                     </ul>
 
