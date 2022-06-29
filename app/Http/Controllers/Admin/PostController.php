@@ -87,7 +87,8 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $categories = Category::all();
-        return view('admin.posts.edit', compact('post', 'categories'));
+        $tags = Tag::all();
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -125,6 +126,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $post->tags()->sync([]);
         $post->delete();
         return redirect()->route('admin.post.index')->with("message", "Post with id:{$post->id} successfully deleted !");
     }
