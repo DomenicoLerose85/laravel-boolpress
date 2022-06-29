@@ -6,7 +6,12 @@
 
 require('./bootstrap');
 
+window.axios = require('axios');
+windows.axios.defaults.headers.common['X-request-With'] = 'XMLHttpRequest';
+
 window.Vue = require('vue');
+
+import App from './views/App'
 
 /**
  * The following block of code may be used to automatically register your
