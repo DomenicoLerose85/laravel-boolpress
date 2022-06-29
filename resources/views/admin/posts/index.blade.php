@@ -12,17 +12,17 @@
     </tr>
   </thead>
   <tbody>
-    @foreach ($posts as $post)
+    @foreach ($categories as $category)
     <tr>
-      <td><a href="{{route('admin.posts.show', $post->id)}}">{{$post->id}}</a></td>
-      <td><a href="{{route('admin.posts.show', $post->id)}}">{{$post->title}}</a></td>
-      <td>{{$post->created_at}}</td>
-      <td><a href="{{route('admin.posts.edit', $post->id)}}" class="btn btn-primary">Edit</a></td>
+      <td><a href="{{route('admin.categories.show', $category->id)}}">{{$category->id}}</a></td>
+      <td><a href="{{route('admin.categories.show', $category->id)}}">{{$category->title}}</a></td>
+      <td>{{$category->created_at}}</td>
+      <td><a href="{{route('admin.categories.edit', $category->id)}}" class="btn btn-primary">Edit</a></td>
       <td>
-        <form action="{{route('admin.posts.destroy', $post->id)}}" method="POST">
+        <form action="{{route('admin.categories.destroy', $category->id)}}" method="POST">
           @csrf
           @method('DELETE')
-          <button type="submit" @@click="openModal($event, {{$post->id}}" class="btn btn-warning delete">Delete</button>
+          <button type="submit" @@click="openModal($event, {{$category->id}}" class="btn btn-warning delete">Delete</button>
 
         </form>
       </td>
@@ -30,5 +30,5 @@
     @endforeach
   </tbody>
 </table>
-{{ $posts->links() }}
+{{ $categories->links() }}
 @endsection

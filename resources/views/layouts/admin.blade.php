@@ -40,6 +40,12 @@
                             <li class="nav-item">
                                 <a class="nav-link {{Route::currentRouteName() == 'admin.posts.index' ? 'active' : ''}}" href="{{route('admin.posts.index')}}">Posts</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{Route::currentRouteName() == 'admin.categories.index' ? 'active' : ''}}" href="{{route('admin.categories.index')}}">Categories</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{Route::currentRouteName() == 'admin.tags.index' ? 'active' : ''}}" href="{{route('admin.tags.index')}}">Tags</a>
+                            </li>
                         @endauth
 
                     </ul>
