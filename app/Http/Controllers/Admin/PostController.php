@@ -58,6 +58,10 @@ class PostController extends Controller
         $newPost->published = isset($data['published']);
         $newPost->category_id = isset($data['category_id']);
         $newPost->slug = $this->getSlug($newPost->title);
+        if (isset($data['image'])) {
+            $path_image = Storage::put("uploads", $data['image']);
+            $newPost->image = $path_image;
+        }
         $newPost->save();
         if (isset($data['tags'])) {
             $newPost->tags()->sync($data['tags']);
@@ -114,6 +118,11 @@ class PostController extends Controller
         $post->category_id = $data['category_id'];
         $post->content = $data['content'];
         $post->published = isset($data['published']);
+        if (isset($data['image'])) {
+            Storage::delete($post->image);
+            $path_image = Storage::put("uploads", $data['image']);
+            $post->image = $path_image;
+        }
         $post->update();
         return redirect()->route('admin.posts.show', $post->id);
     }
