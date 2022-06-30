@@ -43,6 +43,15 @@ const app = new Vue({
             console.log(this.currentForm);
             $('#deleteModal').modal('show');
         },
+        previewImage() {
+            var oFReader = new FileReader();
+            oFReader.redAsDataURL(document.getElementById("image").files[0]);
+
+            oFReader.onload = function (oFREvent) {
+                document.getElementById("uploadPreview").src = oFREvent.target.result;
+            }
+        },
+
         submitForm() {
             this.currentForm.submit();
         }
